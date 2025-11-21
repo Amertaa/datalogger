@@ -13,6 +13,8 @@ async function fetchRealtimeData() {
     document.getElementById('data-frequency').innerText = data.frequency + ' Hz';
     document.getElementById('data-pf').innerText = data.powerfactor;
     document.getElementById('data-waktu').innerText = data.waktu;
+    document.getElementById('data-temp').innerText = data.temperature + ' °C';
+    document.getElementById('data-hum').innerText = data.humidity + ' %RH';
 
     const card = document.getElementById('device-card');
     const status = document.getElementById('status-device');
@@ -31,5 +33,5 @@ async function fetchRealtimeData() {
   }
 }
 
-setInterval(fetchRealtimeData, 3000);
 fetchRealtimeData();
+setInterval(fetchRealtimeData, 3000);

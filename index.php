@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Logger | Monitoring PLTS</title>
+    <title>Agrinergy.id | Agriculture Energy Monitoring</title>
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,36 +17,49 @@
 </head>
 
 <body class="light-mode">
-
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark shadow-sm main-navbar">
         <div class="container">
 
             <!-- LOGO -->
-            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-                <!-- Bisa ganti dengan <img src="logo.png"> jika kamu punya logo -->
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.php">
                 <span class="logo-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-sun"></i>
+                    <i class="bi bi-flower3"></i>
                 </span>
-                <span class="fw-bold">PLTS Logger</span>
+                <div class="d-flex flex-column">
+                    <span class="fw-bold text-uppercase brand-title">Agrinergy</span>
+                    <small class="brand-subtitle">Inovasi Sosial Institut Teknologi Kalimantan</small>
+                </div>
             </a>
 
-            <!-- Tombol DARK MODE -->
+            <!-- MENU (TAMBAHAN BARU) -->
+            <ul class="navbar-nav ms-3">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.php">Monitoring</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="data.php">Data Tabel</a>
+                </li>
+            </ul>
+
+            <!-- DARK MODE TOGGLE -->
             <span class="theme-toggle ms-auto" id="toggleTheme">
                 <i class="bi bi-moon-stars" id="theme-icon"></i>
             </span>
+
         </div>
     </nav>
+
 
     <!-- Hero / Header section -->
     <section class="hero-section">
         <div class="container">
             <div class="row align-items-center gy-3">
                 <div class="col-lg-8">
-                    <h1 class="title-header mb-2">Realtime Monitoring PLTS</h1>
+                    <h1 class="title-header mb-2">Realtime Monitoring PLTS Agrinergy</h1>
                     <p class="subtitle-header mb-0">
-                        Pantau tegangan, arus, daya, energi, dan intensitas cahaya secara
-                        <span class="highlight">online 24/7</span>.
+                        Platform pemantauan <span class="highlight">energi surya untuk pertanian</span> yang
+                        memudahkan petani Desa Sungai Merdeka memantau tegangan, arus, daya, energi, dan intensitas
+                        cahaya secara online 24/7.
                     </p>
                 </div>
                 <div class="col-lg-4 text-lg-end text-start mt-3 mt-lg-0">
@@ -67,8 +80,8 @@
                 <div class="card card-custom status-card" id="device-card">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
-                            <p class="card-label text-light">Status Device</p>
-                            <h4 class="card-value" id="status-device">Memuat...</h4>
+                            <p class="card-label text-light">Status Perangkat</p>
+                            <h4 class="card-value text-light fw-bold" id="status-device">Memuat...</h4>
                         </div>
                         <div class="card-icon-wrap">
                             <i class="bi bi-wifi icon-large"></i>
@@ -94,7 +107,7 @@
 
             <!-- Cahaya -->
             <div class="col-md-4">
-                <div class="card card-custom accent-yellow">
+                <div class="card card-custom accent-sun">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
                             <p class="card-label">Cahaya (LUX)</p>
@@ -197,6 +210,40 @@
                 </div>
             </div>
 
+            <!-- SUHU & KELEMBAPAN -->
+            <div class="d-flex justify-content-between gap-3 flex-wrap">
+                <!-- Temperature -->
+                <div class="col-md-4 flex-grow-1">
+                    <div class="card card-custom">
+                        <div class="card-body d-flex justify-content-between align-items-center">
+                            <div>
+                                <p class="card-label">Suhu</p>
+                                <h4 class="card-value" id="data-temp">Memuat...</h4>
+                            </div>
+                            <div class="card-icon-wrap">
+                                <i class="bi bi-thermometer-half icon-large"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Humidity -->
+                <div class="col-md-4 flex-grow-1">
+                    <div class="card card-custom">
+                        <div class="card-body d-flex justify-content-between align-items-center">
+                            <div>
+                                <p class="card-label">Kelembapan</p>
+                                <h4 class="card-value" id="data-hum">Memuat...</h4>
+                            </div>
+                            <div class="card-icon-wrap">
+                                <i class="bi bi-droplet icon-large"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </div>
 
@@ -207,6 +254,7 @@
     <script>
         const htmlBody = document.body;
         const themeIcon = document.getElementById("theme-icon");
+        htmlBody.style.transition = "background-color 0.5s ease, color 0.5s ease";
 
         // Load theme dari localStorage
         if (localStorage.getItem("theme") === "dark") {
