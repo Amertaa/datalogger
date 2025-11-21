@@ -12,6 +12,8 @@ $sql = "SELECT
             nilai_sensor_energy        AS energy,
             nilai_sensor_frequency     AS frequency,
             nilai_sensor_powerfactor   AS powerfactor,
+            nilai_sensor_temperature   AS temperature,
+            nilai_sensor_humidity      AS humidity,
             waktu
         FROM data_sensor
         ORDER BY waktu DESC
@@ -43,8 +45,8 @@ $now       = time();
 $last_time = strtotime($row['waktu']);
 $diff      = $now - $last_time; // detik
 
-// Wemos kirim ± setiap 1 menit → toleransi 3 menit
-$status = ($diff <= 180) ? "ONLINE" : "OFFLINE";
+// Wemos kirim ± setiap 1 menit → toleransi 1 menit
+$status = ($diff <= 120) ? "ONLINE" : "OFFLINE";
 
 // Karena kolom di DB bertipe CHAR, kita cast ke float
 echo json_encode([
@@ -56,6 +58,8 @@ echo json_encode([
     "energy"        => (float)$row['energy'],
     "frequency"     => (float)$row['frequency'],
     "powerfactor"   => (float)$row['powerfactor'],
+    "temperature"   => (float)$row['temperature'],
+    "humidity"      => (float)$row['humidity'],
     "waktu"         => $row['waktu'],
     "status"        => $status
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
