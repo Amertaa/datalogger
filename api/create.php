@@ -29,6 +29,7 @@ if (!isset($_GET['device']) || !isset($_GET['uptime']) || !isset($_GET['sinyal']
     respond(400, "Parameter Status Wemos Tidak Lengkap");
 }
 
+
 $nilai_sensor_tegangan_ac   = $_GET['nilai_sensor_tegangan_ac'];
 $nilai_sensor_cahaya        = $_GET['nilai_sensor_cahaya'];
 $nilai_sensor_arus_ac       = $_GET['nilai_sensor_arus_ac'];
